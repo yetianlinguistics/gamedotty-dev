@@ -131,12 +131,25 @@ nav ul li a {
     height: auto;
 }
 
+/* Media query for mobile optimization */
+@media (max-width: 768px) {
+    .results-map-container {
+        flex-direction: column;
+    }
 
-.result-item:hover {
-    transform: translateY(-5px);
-}
+    .map {
+        position: static;
+        height: 300px;
+        margin-top: 20px;
+    }
 
-.result-item img {
-    width: 100%;
-    height: auto;
+    .filters {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .filter-btn {
+        flex: 1 1 calc(50% - 10px);
+        text-align: center;
+    }
 }
