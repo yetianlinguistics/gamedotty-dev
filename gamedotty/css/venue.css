@@ -1,0 +1,80 @@
+
+.venue-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px 20px; /* Corrected padding to avoid header overlap */
+}
+
+.venue-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.venue-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.venue-header p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+.venue-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.venue-image {
+    flex: 1 1 300px;
+}
+
+.venue-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.venue-details {
+    flex: 2 1 400px;
+}
+
+.venue-details h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.venue-details p, .venue-details ul {
+    margin-bottom: 20px;
+}
+
+.venue-reviews {
+    flex: 1 1 100%;
+}
+
+.review {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.review h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+#add-review-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#add-review-btn:hover {
+    background-color: #0056b3;
+}

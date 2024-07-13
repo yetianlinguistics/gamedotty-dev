@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venue Name - GameDotty</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/venue.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="images/gamedotty-logo.svg" alt="GameDotty Logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html#places">Places</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#communities">Communities</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="venue-container" role="main">
+        <div class="venue-header">
+            <h1 id="venue-name">Venue Name</h1>
+            <p id="venue-type">Venue Type</p>
+        </div>
+
+        <div class="venue-content">
+            <div class="venue-image">
+                <img id="venue-image" src="" alt="Venue Image">
+            </div>
+
+            <div class="venue-details">
+                <h2>About</h2>
+                <p id="venue-description"></p>
+
+                <h2>Address</h2>
+                <p id="venue-address"></p>
+
+                <h2>Opening Hours</h2>
+                <ul id="venue-hours"></ul>
+
+                <h2>Contact</h2>
+                <p id="venue-contact"></p>
+            </div>
+
+            <div class="venue-reviews">
+                <h2>Reviews</h2>
+                <div id="reviews-list"></div>
+                <button id="add-review-btn">Add Review</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Join Us!</p>
+    </footer>
+
+    <script src="js/venue.js"></script>
+</body>
+</html>

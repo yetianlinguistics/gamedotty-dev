@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - GameDotty</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/search-results.css">
+    <!-- googlemap -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpCOMDbYOJPb9LvA_8vbe1VXm3viaa0Zk&callback=initMap" async defer></script>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="images/gamedotty-logo.svg" alt="GameDotty Logo"></a>
+            </div>
+            <ul>
+                <li><a href="index.html#places">Places</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#communities">Communities</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="search-results-container">
+        <h1>Search Results</h1>
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="cafe">Cafes</button>
+            <button class="filter-btn" data-filter="shop">Shops</button>
+            <button class="filter-btn" data-filter="community">Communities</button>
+        </div>
+        <div class="results-map-container">
+            <div id="results-list" class="results-list">
+                <!-- Search results will be dynamically added here -->
+            </div>
+            <div id="map" class="map" style="height: 100vh;"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Join Us!</p>
+    </footer>
+
+    <script src="js/search-results.js"></script>
+</body>
+</html>
