@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsContainer = document.getElementById('results-list');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const searchTitle = document.querySelector('h1');
+    let allResults = [];
 
     // Get the search term from the URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -12,18 +13,30 @@ document.addEventListener('DOMContentLoaded', () => {
         searchTitle.textContent = `Search Results for "${searchTerm}"`;
     }
 
-    // Mock data for search results
-    const mockResults = [
-        { name: "Dice & Donuts", type: "cafe", city: "Manchester", image: "dice-donuts.jpg", description: "Board games and sweet treats" },
-        { name: "Draughts Waterloo", type: "shop", city: "London", image: "meeple-mansion.jpg", description: "Largest game selection in the UK" },
-        { name: "Cardboard Cafe", type: "cafe", city: "Edinburgh", image: "cardboard-cafe.jpg", description: "Cozy spot for gamers" },
-        { name: "Tabletop Titans", type: "community", city: "Birmingham", image: "tabletop-titans.jpg", description: "Weekly game nights and tournaments" },
-        { name: "The Dragon's Hoard", type: "shop", city: "Bristol", image: "dragons-hoard.jpg", description: "Rare and collectible games" },
-        { name: "Pawns & Puzzles", type: "cafe", city: "Glasgow", image: "pawns-puzzles.jpg", description: "Chess club and game cafe" }
-    ];
+    // Function to load and parse the CSV file
+    function loadCSV() {
+        console.log("Loading CSV file...");
+        Papa.parse('data/gamedotty_list_dev.csv', {
+            download: true,
+            header: true,
+            complete: function(results) {
+                console.log("CSV file loaded and parsed.");
+                console.log("Parsed Results:", results);
+                allResults = results.data;
+                // print the first result
+                console.log("First result:", allResults[0]);
+                filterResults('all');
+                addMarkers(allResults);
+            },
+            error: function(error) {
+                console.error("Error parsing CSV file:", error);
+            }
+        });
+    }
 
     function displayResults(results) {
         resultsContainer.innerHTML = '';
+        console.log("Displaying results:", results);
         results.forEach(result => {
             const resultElement = document.createElement('div');
             resultElement.className = 'result-item';
@@ -40,10 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function filterResults(filter) {
-        let filteredResults = mockResults;
-        
+        let filteredResults = allResults;
+
         if (filter !== 'all') {
-            filteredResults = mockResults.filter(result => result.type === filter);
+            filteredResults = allResults.filter(result => result.type.toLowerCase() === filter);
         }
 
         if (searchTerm) {
@@ -65,11 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initial display of filtered results
-    filterResults('all');
+    loadCSV(); // Load the CSV file and initialize data
 });
 
-// search-results.js
+// Function to initialize the map
 let map;
 
 function initMap() {
@@ -88,38 +100,24 @@ function initMap() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const results = [
-        { name: "Dice & Donuts", lat: 53.4808, lng: -2.2426 },
-        { name: "Draughts Waterloo", lat: 53.4808, lng: -2.2426 },
-        { name: "Cardboard Cafe", lat: 55.9533, lng: -3.1883 }
-    ];
-
-    function addMarkers() {
-        const results = [
-            { name: "Dice & Donuts", lat: 53.4808, lng: -2.2426 },
-            { name: "Draughts Waterloo", lat: 51.5033, lng: -0.1145 },
-            { name: "Cardboard Cafe", lat: 55.9533, lng: -3.1883 }
-        ];
-    
-        results.forEach(result => {
+function addMarkers(results) {
+    console.log("Adding markers to map:", results);
+    results.forEach(result => {
+        if (result.lat && result.lng) { // Ensure lat and lng are present
             const marker = new google.maps.Marker({
-                position: { lat: result.lat, lng: result.lng },
+                position: { lat: parseFloat(result.lat), lng: parseFloat(result.lng) },
                 map: map,
                 title: result.name
             });
-    
+
             const infoWindow = new google.maps.InfoWindow({
                 content: `<h3>${result.name}</h3>`
             });
-    
+
             marker.addListener('click', () => {
                 infoWindow.open(map, marker);
             });
-        });
-    }
-    initMap();
-    addMarkers();
-});
-
+        }
+    });
+}
 
